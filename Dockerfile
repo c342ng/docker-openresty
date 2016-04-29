@@ -1,5 +1,5 @@
 FROM debian:jessie
-RUN apt-get update && apt-get -y wget
+RUN apt-get update && apt-get install -y wget
 RUN apt-get install -y libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make build-essential
 
 WORKDIR /tmp/
