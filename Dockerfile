@@ -7,7 +7,7 @@ RUN rm -rf /opt/penresty && mkdir /opt/penresty
 WORKDIR /tmp/
 RUN wget -q https://openresty.org/download/openresty-1.9.7.4.tar.gz \
         && tar -xzf openresty-1.9.7.4.tar.gz \
-        && /tmp/openresty-1.9.7.4 \
+        && cd /tmp/openresty-1.9.7.4 \
         && ./configure --prefix=/opt/penresty --with-pcre-jit \
-        && rm -rf openresty-1.9.7.4.tar.gz \
-        && make && make install
+        && make && make install \
+        && rm -rf /tmp/openresty*
