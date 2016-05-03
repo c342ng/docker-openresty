@@ -12,8 +12,7 @@ RUN rm -rf $OPENRESTY_PREFIX && mkdir $OPENRESTY_PREFIX \
 
 WORKDIR /tmp/
 RUN echo 'start downloading and unzip package' \
-        && curl -sSL https://openresty.org/download/openresty-${OPENRESTY_VERSION}.tar.gz |
-        && tar -xzf \
+        && curl -sSL https://openresty.org/download/openresty-${OPENRESTY_VERSION}.tar.gz | tar -xzf \
         && echo 'start configure' \
         && cd /tmp/openresty-${OPENRESTY_VERSION} \
         && ./configure \
