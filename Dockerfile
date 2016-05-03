@@ -11,3 +11,4 @@ RUN wget -q https://openresty.org/download/openresty-1.9.7.4.tar.gz \
         && ./configure --prefix=/opt/openresty --with-pcre-jit \
         && make && make install \
         && rm -rf /tmp/openresty*
+RUN rm -rf /var/lib/apt/lists/*
