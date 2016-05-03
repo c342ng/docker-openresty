@@ -1,5 +1,5 @@
 FROM debian:jessie
-RUN apt-get update && apt-get install -y libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make build-essential \
+RUN apt-get update && apt-get install -y curl libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make build-essential \
         && rm -rf /var/lib/apt/lists/*
 
 ENV OPENRESTY_VERSION 1.9.7.4
