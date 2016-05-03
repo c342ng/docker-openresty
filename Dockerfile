@@ -7,7 +7,7 @@ ENV OPENRESTY_PREFIX /opt/openresty
 ENV OPENRESTY_CONFIG_PREFIX /etc/openresty
 ENV OPENRESTY_VAR_PREFIX /var/run/openresty
 RUN rm -rf $OPENRESTY_PREFIX && mkdir $OPENRESTY_PREFIX \
-        && rm -rf $OPENRESTY_CONFIG_PREFIX && $OPENRESTY_CONFIG_PREFIX
+        && rm -rf $OPENRESTY_CONFIG_PREFIX && $OPENRESTY_CONFIG_PREFIX \
         && rm -rf $OPENRESTY_VAR_PREFIX && mkdir $OPENRESTY_VAR_PREFIX
 
 WORKDIR /tmp/
@@ -28,7 +28,7 @@ RUN echo 'start downloading and unzip package' \
                 --without-http_ssi_module \
                 --without-http_userid_module \
                 --without-http_uwsgi_module \
-                --without-http_scgi_module
+                --without-http_scgi_module \
         && echo 'start make and install' \
         && make && make install \
         && echo 'clean build tmp' \
