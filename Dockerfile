@@ -1,14 +1,35 @@
 FROM debian:jessie
-RUN apt-get update && apt-get install -y wget vim
-RUN apt-get install -y libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make build-essential \
+RUN apt-get update && apt-get install -y libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make build-essential \
         && rm -rf /var/lib/apt/lists/*
 
-RUN rm -rf /opt/openresty && mkdir /opt/openresty
+ENV OPENRESTY_VERSION 1.9.7.4
+ENV OPENRESTY_PREFIX /opt/openresty
+ENV OPENRESTY_CONFIG_PREFIX /etc/openresty
+ENV OPENRESTY_VAR_PREFIX /var/run/openresty
+RUN rm -rf $OPENRESTY_PREFIX && mkdir $OPENRESTY_PREFIX \
+        && rm -rf $OPENRESTY_CONFIG_PREFIX && $OPENRESTY_CONFIG_PREFIX
+        && rm -rf $OPENRESTY_VAR_PREFIX && mkdir $OPENRESTY_VAR_PREFIX
 
 WORKDIR /tmp/
-RUN wget -q https://openresty.org/download/openresty-1.9.7.4.tar.gz \
-        && tar -xzf openresty-1.9.7.4.tar.gz \
-        && cd /tmp/openresty-1.9.7.4 \
-        && ./configure --prefix=/opt/openresty --with-pcre-jit \
+RUN echo 'start downloading and unzip package' \
+        && curl -sSL https://openresty.org/download/openresty-${OPENRESTY_VERSION}.tar.gz |
+        && tar -xzf \
+        && echo 'start configure' \
+        && cd /tmp/openresty-${OPENRESTY_VERSION} \
+        && ./configure \
+                --prefix=$OPENRESTY_PREFIX \
+                --conf-path=$OPENRESTY_CONFIG_PREFIX \
+                --pid-path=${OPENRESTY_CONFIG_PREFIX}/nginx.pid \
+                --lock-path=PATH=${OPENRESTY_CONFIG_PREFIX}/nginx.lock  \
+                --with-luajit \
+                --with-pcre-jit \
+                --with-ipv6 \
+                --with-http_ssl_module \
+                --without-http_ssi_module \
+                --without-http_userid_module \
+                --without-http_uwsgi_module \
+                --without-http_scgi_module
+        && echo 'start make and install' \
         && make && make install \
+        && echo 'clean build tmp' \
         && rm -rf /tmp/openresty*
