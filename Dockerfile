@@ -14,13 +14,13 @@ RUN rm -rf $OPENRESTY_PREFIX && mkdir $OPENRESTY_PREFIX \
 WORKDIR /tmp/
 RUN echo 'start downloading and unzip package' \
         && curl -sSL https://openresty.org/download/openresty-${OPENRESTY_VERSION}.tar.gz | tar -xz
-RUN echo 'start configure' \
+		&& echo 'start configure' \
         && cd /tmp/openresty-${OPENRESTY_VERSION} \
         && ./configure \
                 --prefix=$OPENRESTY_PREFIX \
-#                --conf-path=$OPENRESTY_CONFIG_PREFIX \
-#                --pid-path=${OPENRESTY_CONFIG_PREFIX}/nginx.pid \
-#                --lock-path=PATH=${OPENRESTY_CONFIG_PREFIX}/nginx.lock  \
+                --conf-path=$OPENRESTY_CONFIG_PREFIX \
+                --pid-path=${OPENRESTY_CONFIG_PREFIX}/nginx.pid \
+                --lock-path=PATH=${OPENRESTY_CONFIG_PREFIX}/nginx.lock  \
                 --with-luajit \
                 --with-pcre-jit \
                 --with-ipv6 \
@@ -33,3 +33,5 @@ RUN echo 'start configure' \
         && make && make install \
         && echo 'clean build tmp' \
         && rm -rf /tmp/openresty*
+		
+COPY ./conf/* /etc/nginx/
