@@ -18,9 +18,9 @@ RUN echo 'start configure' \
         && cd /tmp/openresty-${OPENRESTY_VERSION} \
         && ./configure \
                 --prefix=$OPENRESTY_PREFIX \
-                --conf-path=$OPENRESTY_CONFIG_PREFIX \
-                --pid-path=${OPENRESTY_CONFIG_PREFIX}/nginx.pid \
-                --lock-path=PATH=${OPENRESTY_CONFIG_PREFIX}/nginx.lock  \
+#                --conf-path=$OPENRESTY_CONFIG_PREFIX \
+#                --pid-path=${OPENRESTY_CONFIG_PREFIX}/nginx.pid \
+#                --lock-path=PATH=${OPENRESTY_CONFIG_PREFIX}/nginx.lock  \
                 --with-luajit \
                 --with-pcre-jit \
                 --with-ipv6 \
