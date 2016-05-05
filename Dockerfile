@@ -1,11 +1,12 @@
 FROM debian:jessie
-RUN apt-get update && apt-get install -y curl libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make build-essential \
+RUN apt-get update && apt-get install -y curl \
+        libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make build-essential \
         && rm -rf /var/lib/apt/lists/*
 
 ENV OPENRESTY_VERSION 1.9.7.4
 ENV OPENRESTY_PREFIX /opt/openresty
-ENV OPENRESTY_CONFIG_PREFIX /etc/openresty
-ENV OPENRESTY_VAR_PREFIX /var/run/openresty
+ENV OPENRESTY_CONFIG_PREFIX /etc/nginx
+ENV OPENRESTY_VAR_PREFIX /var/run/nginx
 RUN rm -rf $OPENRESTY_PREFIX && mkdir $OPENRESTY_PREFIX \
         && rm -rf $OPENRESTY_CONFIG_PREFIX && mkdir $OPENRESTY_CONFIG_PREFIX \
         && rm -rf $OPENRESTY_VAR_PREFIX && mkdir $OPENRESTY_VAR_PREFIX
