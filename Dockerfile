@@ -37,5 +37,6 @@ RUN echo 'start downloading and unzip package' \
 COPY ./conf/* /etc/nginx/
 
 RUN apt-get update && apt-get install -y pandoc git
+
 WORKDIR /tmp/
 RUN git clone https://github.com/openresty/openresty.org.git && cd openresty.org/v2 && make initdb
