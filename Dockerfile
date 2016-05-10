@@ -1,7 +1,7 @@
 FROM debian:jessie
-RUN apt-get update && apt-get install -y curl \
+RUN apt-get update && apt-get install -y curl vim \
         libreadline-dev libncurses5-dev libpcre3-dev libssl-dev perl make build-essential \
-        && rm -rf /var/lib/apt/lists/*
+        #&& rm -rf /var/lib/apt/lists/*
 
 ENV OPENRESTY_VERSION 1.9.7.4
 ENV OPENRESTY_PREFIX /opt/openresty
