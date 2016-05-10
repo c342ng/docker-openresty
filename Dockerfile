@@ -35,3 +35,5 @@ RUN echo 'start downloading and unzip package' \
         && rm -rf /tmp/openresty*
 		
 COPY ./conf/* /etc/nginx/
+EXPOSE 80 443
+CMD ["${OPENRESTY_PREFIX}/nginx/sbin/nginx"]
