@@ -33,7 +33,7 @@ RUN echo 'start downloading and unzip package' \
         && make && make install \
         && echo 'clean build tmp' \
         && rm -rf /tmp/openresty*
-		
+ENV PATH $PATH:$OPENRESTY_PREFIX/nginx/sbin:$OPENRESTY_PREFIX/bin
 COPY ./conf/* /etc/nginx/
 EXPOSE 80 443
-CMD ["${OPENRESTY_PREFIX}/nginx/sbin/nginx"]
+CMD ["nginx"]
