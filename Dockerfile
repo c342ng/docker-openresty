@@ -35,5 +35,7 @@ RUN echo 'start downloading and unzip package' \
         && rm -rf /tmp/openresty*
 ENV PATH $PATH:$OPENRESTY_PREFIX/nginx/sbin:$OPENRESTY_PREFIX/bin
 COPY ./conf/* /etc/nginx/
+
 EXPOSE 80 443
+
 CMD ["nginx", "-g", "daemon off;"]
