@@ -19,8 +19,8 @@ RUN echo 'start downloading and unzip package' \
         && ./configure \
                 --prefix=$OPENRESTY_PREFIX \
                 --conf-path=${OPENRESTY_CONFIG_PREFIX}/nginx.conf \
-                --pid-path=${OPENRESTY_CONFIG_PREFIX}/nginx.pid \
-                --lock-path=PATH=${OPENRESTY_CONFIG_PREFIX}/nginx.lock  \
+                --pid-path=${OPENRESTY_VAR_PREFIX}/nginx.pid \
+                --lock-path=${OPENRESTY_VAR_PREFIX}/nginx.lock  \
                 --with-luajit \
                 --with-pcre-jit \
                 --with-ipv6 \
